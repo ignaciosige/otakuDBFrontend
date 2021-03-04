@@ -1,7 +1,7 @@
 <script>
   import Boton from "./Boton.svelte";
   
-  export let cliente = {};
+  export let anime = {};
 </script>
 
 <style>
@@ -48,7 +48,8 @@
 </style>
 
 <div class="card" on:click>
-  <input bind:value={cliente.nombre} class="title" />
-  <input bind:value={cliente.apellidos} class="title" />
+  <input bind:value={anime.nombre} class="title" />
+  <input type="date" bind:value={anime.fechaSalida} class="title" />
+  <input type="number" bind:value={anime.numeroEpisodios} class="title" />
   <slot />
 </div>

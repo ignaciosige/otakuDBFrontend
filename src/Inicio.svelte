@@ -54,17 +54,12 @@
   }
 </style>
 
-<h1>Tienda Frontend</h1>
-<p>
-  <small>
-    <b>Progressive Web App (PWA)</b>
-  </small>
-</p>
+<h1>Otaku DB Frontend</h1>
 <p>
   <small>
     Backend en
-    <a href="https://tiendabackend.herokuapp.com">
-      https://tiendabackend.herokuapp.com
+    <a href="https://otakudbbackend.herokuapp.com">
+      https://otakudbbackend.herokuapp.com
     </a>
   </small>
 </p>
@@ -73,25 +68,25 @@
 <div class="bloque">
   <Link to="/">
     <div class="resumen">
-      <span class="opcion">🛒 Inicio</span>
+      <span class="opcion">🙋‍♂️ Inicio</span>
       <span class="descripcion">Esta página de información.</span>
     </div>
   </Link>
 
-  <Link to="/articulos">
+  <Link to="/mangas">
     <div class="resumen">
-      <span class="opcion">🎁 Artículos</span>
+      <span class="opcion">📚 Mangas</span>
       <span class="descripcion">
-        Operaciones CRUD de artículos en una BD.
+        Operaciones CRUD de mangas en la BD.
       </span>
     </div>
   </Link>
 
-  <Link to="/clientes">
+  <Link to="/animes">
     <div class="resumen">
-      <span class="opcion">👥 Clientes</span>
+      <span class="opcion">🎞️ Animes</span>
       <span class="descripcion">
-        Operaciones CRUD de clientes en una BD.
+        Operaciones CRUD de animes en la BD.
       </span>
     </div>
   </Link>
@@ -101,8 +96,8 @@
   <small>
     <b>
       Código fuente en
-      <a href="https://github.com/jamj2000/tiendafrontend">
-        https://github.com/jamj2000/tiendafrontend
+      <a href="https://github.com/ignaciosige/otakudbfrontend">
+        https://github.com/ignaciosige/otakudbfrontend
       </a>
     </b>
   </small>

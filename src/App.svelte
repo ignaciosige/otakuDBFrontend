@@ -5,8 +5,8 @@
   import Contenido      from "./Contenido.svelte";
   
   const URL = {
-    articulos :  "https://tiendabackend.herokuapp.com/api/articulos/",
-    clientes :   "https://tiendabackend.herokuapp.com/api/clientes/"
+    mangas :  "https://otakudbbackend.herokuapp.com/api/mangas/",
+    animes :   "https://otakudbbackend.herokuapp.com/api/animes/"
   };
 
   setContext("URL", URL);

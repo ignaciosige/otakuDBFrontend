@@ -69,8 +69,8 @@
     }
 
     .inicio::after,
-    .articulos::after,
-    .clientes::after {
+    .mangas::after,
+    .animes::after {
       display: inline-block;
       padding-left: 10px;
     }
@@ -78,10 +78,10 @@
     .inicio::after {
       content: "Inicio";
     }
-    .articulos::after {
+    .mangas::after {
       content: "Artículos";
     }
-    .clientes::after {
+    .animes::after::after {
       content: "Clientes";
     }
   }
@@ -105,17 +105,17 @@
   <ul class="menu">
     <li class="logo">
       <Link to="/">
-        <span class="inicio">🛒</span>
+        <span class="inicio">🙋‍♂️</span>
       </Link>
     </li>
     <li class="item active">
-      <Link to="/articulos">
-        <span class="articulos">🎁</span>
+      <Link to="/mangas">
+        <span class="mangas">📚</span>
       </Link>
     </li>
     <li class="item active">
-      <Link to="/clientes">
-        <span class="clientes">👥</span>
+      <Link to="/animes">
+        <span class="animes">🎞️</span>
       </Link>
     </li>
   </ul>

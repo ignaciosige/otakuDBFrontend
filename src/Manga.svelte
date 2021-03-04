@@ -1,5 +1,5 @@
 <script>
-  export let articulo = {};
+  export let manga = {};
 </script>
 
 <style>
@@ -46,12 +46,8 @@
 </style>
 
 <div class="card">
-  <input bind:value={articulo.nombre} class="title" />
-  <input
-    type="number"
-    min="0"
-    max="9999.99"
-    step=".01"
-    bind:value={articulo.precio} />  €
+  <input bind:value={manga.nombre} class="title" />
+  <input type="date" bind:value={manga.fechaSalida} class="title" />
+  <input type="number" bind:value={manga.numeroTomos} />  €
   <slot />
 </div>

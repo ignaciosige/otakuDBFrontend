@@ -1,8 +1,8 @@
 <script>
   import { Route }  from "svelte-routing";
   import Inicio     from "./Inicio.svelte";
-  import Articulos  from "./Articulos.svelte";
-  import Clientes   from "./Clientes.svelte";
+  import Mangas  from "./Mangas.svelte";
+  import Animes   from "./Animes.svelte";
 </script>
 
 <style>
@@ -14,6 +14,6 @@
 
 <main id="contenido">
   <Route path="/" component={Inicio} />
-  <Route path="/articulos" component={Articulos} />
-  <Route path="/clientes" component={Clientes} />
+  <Route path="/mangas" component={Mangas} />
+  <Route path="/animes" component={Animes} />
 </main>

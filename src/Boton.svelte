@@ -31,8 +31,8 @@
     }
 
     switch (coleccion) {
-      case "articulos": url=URL.articulos; break;
-      case "clientes": url=URL.clientes; break;
+      case "mangas": url=URL.mangas; break;
+      case "animes": url=URL.animes; break;
       default:
     }
   });

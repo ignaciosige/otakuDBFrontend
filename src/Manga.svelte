@@ -48,6 +48,6 @@
 <div class="card">
   <input bind:value={manga.nombre} class="title" />
   <input type="date" bind:value={manga.fechaSalida} class="title" />
-  <input type="number" bind:value={manga.numeroTomos} />  €
+  <input type="number" bind:value={manga.numeroTomos} />
   <slot />
 </div>

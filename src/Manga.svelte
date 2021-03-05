@@ -1,5 +1,7 @@
 <script>
   export let manga = {};
+let fecha = new Date(manga.fechaSalida);
+ let fechaSalida = ("0" + fecha.getDate()).slice(-2) + '/' + ("0" + (fecha.getMonth() + 1)).slice(-2) + '/' + fecha.getFullYear();
 </script>
 
 <style>
@@ -28,12 +30,11 @@
     outline: none;
     margin-left: 5px;
     margin-bottom: 4px;
-    max-width: 140px;
   }
 
   input[type="number"] {
     text-align: right;
-    width: 100px;
+    width: 150px;
   }
   input:focus {
     background-color: wheat;
@@ -46,8 +47,8 @@
 </style>
 
 <div class="card">
-  <input bind:value={manga.nombre} class="title" />
-  <input type="date" bind:value={manga.fechaSalida} class="title" />
-  <input type="number" bind:value={manga.numeroTomos} />
+  <input bind:value={manga.nombre} placeholder="Nombre" class="title" />
+  <input type="text" bind:value={fechaSalida} placeholder="Fecha de Salida" class="title" />
+  <input type="number" bind:value={manga.numeroTomos} placeholder="Nº Tomos" />
   <slot />
 </div>

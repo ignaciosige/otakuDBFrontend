@@ -1,8 +1,14 @@
 <script>
-  import Boton from "./Boton.svelte";
-  
   export let anime = {};
-</script>
+
+  /* let splitDate = anime.fechaSalida.split("T");
+  let date      = splitDate[0].split("-");
+  let fecha     = date[2] + '/' + date[1] + '/' + date[0]; */
+
+    let fecha       = new Date(anime.fechaSalida);
+    let fechaSalida = ("0" + fecha.getDate()).slice(-2) + '/' + ("0" + (fecha.getMonth() + 1)).slice(-2) + '/' + fecha.getFullYear();
+ 
+ </script>
 
 <style>
   .title {
@@ -30,13 +36,12 @@
     outline: none;
     margin-left: 5px;
     margin-bottom: 4px;
-    max-width: 160px;
   }
 
-  /* input[type="number"] {
+  input[type="number"] {
     text-align: right;
-    width: 100px;
-  } */
+    width: 150px;
+  } 
   input:focus {
     background-color: wheat;
   }
@@ -48,8 +53,8 @@
 </style>
 
 <div class="card" on:click>
-  <input bind:value={anime.nombre} class="title" />
-  <input type="date" bind:value={anime.fechaSalida} class="title" />
-  <input type="number" bind:value={anime.numeroEpisodios} class="title" />
+  <input bind:value={anime.nombre} placeholder="Nombre" class="title" />
+  <input type="text" bind:value={fechaSalida} placeholder="Fecha de Salida" class="title" />
+  <input type="number" bind:value={anime.numeroEpisodios} placeholder="Nº Episodios" />
   <slot />
 </div>

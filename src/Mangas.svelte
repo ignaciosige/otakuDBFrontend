@@ -12,7 +12,7 @@
   let manga = {};
 
   onMount(async () => {
-    const response = await fetch(URL.mangas);
+    const response = await fetch(URL.mangas + 'sort');
     const data = await response.json();
     $jsonData = data;
   });

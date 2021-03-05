@@ -12,7 +12,7 @@
   let anime = {};
 
   onMount(async () => {
-    const response = await fetch(URL.animes);
+    const response = await fetch(URL.animes + 'sort');
     const data = await response.json();
     $jsonData = data;
   });

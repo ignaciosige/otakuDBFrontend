@@ -79,10 +79,10 @@
       content: "Inicio";
     }
     .mangas::after {
-      content: "Artículos";
+      content: "Mangas";
     }
     .animes::after::after {
-      content: "Clientes";
+      content: "Animes";
     }
   }
   /* PC */

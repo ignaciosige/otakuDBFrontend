@@ -81,7 +81,7 @@
     .mangas::after {
       content: "Mangas";
     }
-    .animes::after::after {
+    .animes::after {
       content: "Animes";
     }
   }

@@ -30,7 +30,7 @@
     outline: none;
     margin-left: 5px;
     margin-bottom: 4px;
-    max-width: 140px;
+    max-width: 160px;
   }
 
   /* input[type="number"] {

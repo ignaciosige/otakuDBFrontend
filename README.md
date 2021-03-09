@@ -6,7 +6,7 @@
 >
 > - Mucho del código que aparece en este minitutorial está simplificado con fines didácticos.
 > - Para ver todo el código, revisar el código fuente de este repositorio.
-> - **La parte backend de esta aplicación puede verse en [tiendabackend](https://github.com/jamj2000/tiendabackend)**
+> - **La parte backend de esta aplicación puede verse en [otakuDBbackend](https://github.com/ignaciosige/otakuDBbackend)**
 
 
 ## Introducción
@@ -355,8 +355,8 @@ Crearemos dos componentes llamados `Nav.svelte` y `Contenido.svelte`. Debe estar
   <!-- Se eliminan etiquetas html para resaltar lo esencial -->
   <!-- Consulta el código fuente. -->       
   <Link to="/">Inicio</Link>
-  <Link to="/articulos">Artículos</Link>
-  <Link to="/clientes">Clientes</Link>
+  <Link to="/animes">Animes</Link>
+  <Link to="/mangas">Mangas</Link>
 </nav>
 ```
 
@@ -368,8 +368,8 @@ El componente `Nav` será la barra de navegación (`nav`), con los enlaces a las
 <script>
   import { Route } from "svelte-routing";
   import Inicio from "./Inicio.svelte";
-  import Articulos from "./Articulos.svelte";
-  import Clientes from "./Clientes.svelte";
+  import Animes from "./Animes.svelte";
+  import Mangas from "./Mangas.svelte";
 </script>
 
 <style>
@@ -381,8 +381,8 @@ El componente `Nav` será la barra de navegación (`nav`), con los enlaces a las
   <!-- Se eliminan etiquetas html para resaltar lo esencial -->
   <!-- Consulta el código fuente. --> 
   <Route path="/" component={Inicio} />
-  <Route path="/articulos" component={Articulos} />
-  <Route path="/clientes" component={Clientes} />
+  <Route path="/animes" component={Animes} />
+  <Route path="/mangas" component={Mangas} />
 </main>
 ```
 
@@ -393,8 +393,8 @@ El componente `Contenido` será la sección principal (`main`), con las rutas y 
 Dentro del componente anterior `Contenido` podrán renderizarse distintos componentes, dependiendo del `Link` que pulsemos en la barra de navegación. Los componentes que podrán aparecer en `Contenido` son:
 
 - **Inicio**
-- **Artículos**
-- **Clientes**
+- **Animes**
+- **Mangas**
 
 **`Inicio.svelte`**
 
@@ -404,7 +404,7 @@ Dentro del componente anterior `Contenido` podrán renderizarse distintos compon
   /* Consultar el código fuente */
 </style>
 
-<h1>Tienda PWA</h1>
+<h1>OtakuDB PWA</h1>
   <!-- Se eliminan etiquetas html para resaltar lo esencial -->
   <!-- Consulta el código fuente. --> 
 ```
@@ -412,9 +412,9 @@ Dentro del componente anterior `Contenido` podrán renderizarse distintos compon
 Este componente mostrará información acerca de la aplicación. Sólo posee código HTML y CSS. No necesita solicitar datos al servidor. Por tanto su carga es inmediata, y por este motivo lo mostraremos nada más iniciarse la aplicación. Ello permite una carga inicial de la aplicación instantánea.
 
 
-**`Articulos.svelte`**
+**`Animes.svelte`**
 
-![Articulos](articulos.png)
+![Animes](animes.png)
 
  ```html
  <script>
@@ -422,16 +422,16 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
   import { jsonData }            from "./store.js";
 
   import Buscar                  from "./Buscar.svelte";
-  import Articulo                from "./Articulo.svelte";
+  import Anime                from "./Anime.svelte";
   import Boton                   from "./Boton.svelte";
 
   const URL = getContext("URL");
 
   let busqueda = "";
-  let articulo = {};
+  let anime = {};
 
   onMount(async () => {
-    const response = await fetch(URL.articulos);
+    const response = await fetch(URL.animes);
     const data = await response.json();
     $jsonData = data;
   });
@@ -453,34 +453,34 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
   }
 </style>
 
-<h1>ARTÍCULOS</h1>
+<h1>ANIMES</h1>
 <Buscar bind:busqueda />
 
 <div class="container">
-  <Articulo bind:articulo>
+  <Anime bind:anime>
     <div style="text-align: right">
-      <Boton documento={articulo} tipo="insertar" coleccion="articulos" />
+      <Boton documento={anime} tipo="insertar" coleccion="animes" />
     </div>
-  </Articulo>
+  </Anime>
 </div>
 
 <div class="container">
-  {#each datos as articulo}
-    <Articulo {articulo}>
+  {#each datos as anime}
+    <Anime {anime}>
       <div style="text-align: right">
-        <Boton documento={articulo} tipo="modificar" coleccion="articulos" />
-        <Boton documento={articulo} tipo="eliminar"  coleccion="articulos" />
+        <Boton documento={anime} tipo="modificar" coleccion="animes" />
+        <Boton documento={anime} tipo="eliminar"  coleccion="anime" />
       </div>
-    </Articulo>
+    </Anime>
   {/each}
 </div>
 ```
 
 
 
-**`Clientes.svelte`**
+**`Mangas.svelte`**
 
-![Clientes](clientes.png)
+![Mangas](mangas.png)
 
 ```html
 <script>
@@ -488,16 +488,16 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
   import { jsonData }            from "./store.js";
 
   import Buscar                  from "./Buscar.svelte";
-  import Cliente                 from "./Cliente.svelte";
+  import Manga                 from "./Manga.svelte";
   import Boton                   from "./Boton.svelte";
 
   const URL = getContext("URL");
 
   let busqueda = "";
-  let cliente = {};
+  let manga = {};
 
   onMount(async () => {
-    const response = await fetch(URL.clientes);
+    const response = await fetch(URL.mangas);
     const data = await response.json();
     $jsonData = data;
   });
@@ -519,25 +519,25 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
   }
 </style>
 
-<h1>CLIENTES</h1>
+<h1>MANGAS</h1>
 <Buscar bind:busqueda />
 
 <div class="container">
-  <Cliente bind:cliente>
+  <Manga bind:manga>
     <div style="text-align: right">
-      <Boton documento={cliente} tipo="insertar" coleccion="clientes" />
+      <Boton documento={manga} tipo="insertar" coleccion="mangas" />
     </div>
-  </Cliente>
+  </Manga>
 </div>
 
 <div class="container">
-  {#each datos as cliente}
-    <Cliente {cliente}>
+  {#each datos as manga}
+    <Manga {manga}>
       <div style="text-align: right">
-        <Boton documento={cliente} tipo="modificar" coleccion="clientes" />
-        <Boton documento={cliente} tipo="eliminar" coleccion="clientes" />
+        <Boton documento={manga} tipo="modificar" coleccion="mangas" />
+        <Boton documento={manga} tipo="eliminar" coleccion="mangas" />
       </div>
-    </Cliente>
+    </Manga>
   {/each}
 </div>
 ```
@@ -546,11 +546,11 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
 
 ## Otros componentes
 
-**`Articulo.svelte`**
+**`Anime.svelte`**
 
 ```html
 <script>
-  export let articulo = {};
+  export let anime = {};
 </script>
 
 <style>
@@ -559,24 +559,24 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
 </style>
 
 <div class="card">
-  <input bind:value={articulo.nombre} class="title" />
+  <input bind:value={anime.nombre} class="title" />
   <input
     type="number"
     min="0"
     max="9999.99"
     step=".01"
-    bind:value={articulo.precio} />  €
+    bind:value={anime.precio} />  €
   <slot />
 </div>
 ```
 
 
 
-**`Cliente.svelte`**
+**`Manga.svelte`**
 
 ```html
 <script>
-  export let cliente = {};
+  export let manga = {};
 </script>
 
 <style>
@@ -585,8 +585,8 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
 </style>
 
 <div class="card">
-  <input bind:value={cliente.nombre} class="title" />
-  <input bind:value={cliente.apellidos} class="title" />
+  <input bind:value={manga.nombre} class="title" />
+  <input bind:value={manga.apellidos} class="title" />
   <slot />
 </div>
 ```
@@ -603,7 +603,7 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
   import { jsonData }            from "./store.js";
 
   export let tipo = "insertar";        // insertar, modificar, eliminar
-  export let coleccion = "articulos";  // articulos, clientes
+  export let coleccion = "animes";  // animes, mangas
   export let documento = {};
   
  
@@ -631,8 +631,8 @@ Este componente mostrará información acerca de la aplicación. Sólo posee có
     }
 
     switch (coleccion) {
-      case "articulos": url=URL.articulos; break;
-      case "clientes": url=URL.clientes; break;
+      case "animes": url=URL.animes; break;
+      case "mangas": url=URL.mangas; break;
       default:
     }
   });
@@ -702,7 +702,7 @@ Existen 3 mecanismos:
 
 #### Ejemplo
 
-**`Articulos.svelte`**
+**`Animes.svelte`**
 ```html
 <script>
     let texto = "camisa";
@@ -724,11 +724,11 @@ Existen 3 mecanismos:
 </label>
 ```
 
-Desde el componente padre `Articulos` pasamos el valor `camisa` a la propiedad `busqueda` del componente `Buscar`.
+Desde el componente padre `Animes` pasamos el valor `camisa` a la propiedad `busqueda` del componente `Buscar`.
 
 Por defecto, el sentido de la comunicación es Padre->Hijo. 
 
-Si deseamos que el hijo (`Buscar`) pueda pasar información al padre (`Articulos`) haremos uso de la directiva **`bind`** en el componente padre, que quedaría así:
+Si deseamos que el hijo (`Buscar`) pueda pasar información al padre (`Animes`) haremos uso de la directiva **`bind`** en el componente padre, que quedaría así:
 
 ```html
 <script>
@@ -738,7 +738,7 @@ Si deseamos que el hijo (`Buscar`) pueda pasar información al padre (`Articulos
 <Buscar bind:busqueda={texto} />
 ```
 
-El valor de la propiedad `busqueda`, que será modificada desde el componente `Buscar`, "subirá" hasta la variable `texto` del componente `Articulos`.
+El valor de la propiedad `busqueda`, que será modificada desde el componente `Buscar`, "subirá" hasta la variable `texto` del componente `Animes`.
 
 
 
@@ -757,9 +757,9 @@ El valor de la propiedad `busqueda`, que será modificada desde el componente `B
 <script>
   import { setContext } from "svelte";
 	
-  const urlArticulos = "https://tiendabackend.herokuapp.com/api/articulos/";
+  const urlAnimes = "https://tiendabackend.herokuapp.com/api/animes/";
 
-  setContext("urlArticulos", urlArticulos);
+  setContext("urlAnimes", urlAnimes);
 </script>	
 ```
 
@@ -769,10 +769,10 @@ El valor de la propiedad `busqueda`, que será modificada desde el componente `B
 <script>
   import { getContext } from "svelte";
 	
-  const urlArticulos = getContext("urlArticulos");
+  const urlAnimes = getContext("urlAnimes");
 	
   function obtener() {
-      fetch(urlArticulos, { method: "GET" })
+      fetch(urlAnimes, { method: "GET" })
       .then(res => res.json())
       .then(data => {  /* código para éxito */ })
       .catch(err => {  /* código para error */ });
@@ -800,21 +800,21 @@ export const jsonData = writable([]);
 Declaramos en `store.js` un array vacío, que contendrá datos en formato JSON.
 
 
-**`Articulos.svelte`**
+**`Animes.svelte`**
 
 ```html
 <script>
  import { jsonData }   from "./store.js";
 	
  onMount(async () => {
-    const response = await fetch( urlArticulos );
+    const response = await fetch( urlAnimes );
     const data = await response.json();
     $jsonData = data;
   });
 </script>	
 ```
 
-En el componente `Articulos.svelte` hacemos una petición **fetch** al servidor y guardamos los datos en formato JSON en la variable jsonData del almacén. 
+En el componente `Animes.svelte` hacemos una petición **fetch** al servidor y guardamos los datos en formato JSON en la variable jsonData del almacén. 
 
 **Nota:** Observa que para referirnos a la variable del almacén lo hacemos como **$jsonData**.
 
@@ -827,7 +827,7 @@ En el componente `Articulos.svelte` hacemos una petición **fetch** al servidor 
   export let documento = {};
 	
   function insertar() {
-      fetch(urlArticulos, {
+      fetch(urlAnimes, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(documento)
@@ -843,7 +843,7 @@ En el componente `Articulos.svelte` hacemos una petición **fetch** al servidor 
 </script>
 ```
 
-En el componente `Boton.svelte` insertamos un nuevo artículo en el servidor mediante una petición **fetch** de tipo POST. Si se guarda correctamente en el servidor, entonces actualizamos en consecuencia nuestra variable jsonData del almacén:
+En el componente `Boton.svelte` insertamos un nuevo anime en el servidor mediante una petición **fetch** de tipo POST. Si se guarda correctamente en el servidor, entonces actualizamos en consecuencia nuestra variable jsonData del almacén:
 
 **`$jsonData = [...$jsonData, data]`**
 
@@ -928,163 +928,3 @@ surge  public  my-project.surge.sh
 > NOTA: Sustituye *my-project* por el nombre de tu proyecto.
 
 
-## Progressive Web Application
-
-**Esta es una aplicación web progresiva (PWA)**.
-
-La tecnología PWA es relativamente nueva, iniciandose en el año 2015 bajo el auspicio de **Google**.
-
-Dicha tecnología pretende, mediante la aplicación de pequeñas adaptaciones, usar las **tecnologías web (HTML + CSS + Javascript)** para el **desarrollo de aplicaciones de escritorio y móviles**.
-
-Como el lector entendido en el asunto comprenderá rápidamente, las implicaciones de tal tecnología son enormes:
-
-- **Desarrollo para web, para escritorio y para móvil. Todo en uno.**
-- **Simplificación del desarrollo**. 
-  - "No es necesario" aprender lenguajes como Java o Swift.
-  - "No es necesario" desarrollar de forma nativa (SDKs para Android e iOS).
-  - "No es necesario" desarrollar de forma híbrida (Frameworks Cordova, React Native, Angular Ionic. Electron para el escritorio)
-- **Uso de Web APIs**, las cuales [son bastantes, muchas de ellas aún en desarrollo](https://developer.mozilla.org/en-US/docs/Web/API): fetch, websockets, geolocalización, audio, speech, ... 
- 
-
-**Requisitos para considerar progresiva a una aplicación web**
-
-Una PWA debe cumplir, en esencia, 2 requisitos:
-
-- Debe servirse desde un servidor **HTTPS**. Excepción: `localhost`.
-- Debe disponer de un archivo **manifest.json** o similar con metadata de la applicación.
-- Debe tener capacidad de funcionar **offline**. Para ello es necesario disponer de un *Service Worker*.
-
-
-Los archivos necesarios para hacer que una aplicación web sea progresiva son:
-
-- `public/manifest.json` 
-- `public/images/icons/*`  
-- `public/service-worker.js`   
-
-Tanto el archivo `manifest.json` como la carpeta `images` y todos sus iconos, podemos generarlos de manera sencilla con [Web App Manifest Generator](https://app-manifest.firebaseapp.com/).
-
-El archivo `service-worker.js` se encarga de funcionar como intermediario entre nuestro frontend y el backend, y tiene la siguiente apariencia:
-
-```javascript
-//------  Este código está simplificado para resaltar la estructura
-//------  Para ver todo el código consulta el archivo correspondiente
-const CACHE_NAME = 'tiendafrontend-v1';
-
-// Archivos necesarios para el funcionamiento offline
-const CACHE_ASSETS = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/favicon.png'
-];
-
-// INSTALL
-// Realizamos el cacheo de la APP SHELL
-self.addEventListener('install', funcionDeInstalacion);
-
-
-// ACTIVATE
-// Eliminamos cachés antiguas.
-self.addEventListener('activate', funcionDeActivacion);
-
-
-// FETCH
-// Hacemos peticiones a recursos.
-self.addEventListener('fetch', funcionDeFetch);
-
-
-// PUSH
-self.addEventListener('push', funcionDePush);
-```
-
-El código fuente completo puede verse en [public/service-worker.js](./public/service-worker.js)
-
-Además de todo lo anterior, deberemos modificar el archivo **`index.html`** para que aparezcan las siguientes líneas:
-
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <!-- Se eliminan etiquetas html para resaltar lo esencial -->
-  <!-- Consulta el código fuente. --> 
-
-	<link rel="icon" type="image/png" href="/favicon.png">
-  
-	<!-- PWA: Para habilitar Progressive Web Application -->
-	<link rel="manifest" href="manifest.json">  <!--                  IMPORTANTE -->
-  
-	<!-- PWA: Añadir a pantalla de inicio para Safari en iOS -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-title" content="Tienda">
-	<link rel="apple-touch-icon" sizes="152x152" href="/images/icons/icon-152x152.png">
-	<meta name="msapplication-TileImage" content="/images/icons/icon-144x144.png">
-	<meta name="msapplication-TileColor" content="#fdebc9">
-  
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#fdebc9">
-
-  <!-- Se eliminan etiquetas html para resaltar lo esencial -->
-  <!-- Consulta el código fuente. --> 
-</head>
-
-<body>
-	<noscript>
-		<p> Este sitio necesita Javascript para funcionar. </p>
-	</noscript>
-	<script>
-		// Si está soportado serviceWorker por el navegador
-		if ('serviceWorker' in navigator) {
-		  window.addEventListener('load', () => {
-			navigator.serviceWorker
-			  .register('./service-worker.js')
-			  .then(reg => console.log('[Service Worker] * Registrado.'))
-			  .catch(err => console.log(`[Service Worker] * Error: ${err}`));
-		  });
-		}
-	  </script>
-	
-	  <script src="service-worker.js"></script> <!-- Gestión de eventos del ServiceWorker -->
-</body>
-</html>
-```
-
-Lo que hacemos es **añadir un enlace al archivo `manifest.json`** e indicar los iconos y colores que usaremos.
-
-Además en el `body` de la página, registramos el `service-worker.js` y lo cargamos.
-
-El código fuente completo puede verse en [public/index.html](./public/index.html)
-
-Por último, es recomendable tener un archivo llamado *`offline.html`* o similar, que mostraremos cuando no haya conexión. 
-
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-</head>
-  <!-- Se eliminan etiquetas html para resaltar lo esencial -->
-  <!-- Consulta el código fuente. --> 
-<body>
-    Estamos sin conexión
-    
-    <script>
-        // Este código detecta cuando volvemos a tener conexión
-        // y en ese caso se carga automáticamente la página principal.
-        // El usuario no necesita refrescar la página.
-        window.addEventListener("online", () => (window.location.href = "/"));
-    </script>
-</body>
-</html>
-```
-
-## Auditoría de la aplicación
-
-Podemos realizar una auditoría de la aplicación, haciendo uso de la extensión **Lighthouse** de Chrome. Para instalar dicha extensión en el navegador chrome escribimos la URL chrome://extensions/.
-
-Si pulsamos la tecla `F12` para mostrar las `Dev Tools` podremos ver una pestaña con el nombre `Audits`. Desde ahí realizaremos la auditoría.
-
-
-![ScreenCast](screencast.gif)
-
-
-> NOTA: Algunas extensiones activas en el navegador pueden ralentizar las pruebas y provocar que el *score* obtenido sea menor. Para evitar esto podemos lanzar la auditoría desde el `modo incógnito` del navegador o, una solución más drástica, desactivar las extensiones.
